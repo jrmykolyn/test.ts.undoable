@@ -15,6 +15,10 @@ var undoable = function (reducer) {
         if (state === undefined) {
             newState = { past: [], present: state, future: [] };
         }
+        switch (action.type) {
+            case 'SAVE_STATE':
+                newState = __assign({}, newState, { past: [newState.present] });
+        }
         return __assign({}, newState, { present: reducer(newState.present) });
     };
 };

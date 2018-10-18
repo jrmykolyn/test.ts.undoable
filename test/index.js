@@ -10,21 +10,37 @@ describe( 'undoable', () => {
   } );
 
   it( 'should return a function', () => {
-    expect( undoable() ).to.be.a( 'function' );
+    const action = {};
+
+    expect( undoable( undefined, action ) ).to.be.a( 'function' );
   } );
 
   it( 'should define the initial state when the reducer is invoked for the first time', () => {
     const reducer = undoable( ( state, action ) => state );
-    expect( reducer() ).to.eql( { past: [], present: undefined, future: [] } );
+    const action = {};
+
+    expect( reducer( undefined, action ) ).to.eql( { past: [], present: undefined, future: [] } );
   } );
 
   it( 'should not update the state if no action types are matched', () => {
     const reducer = undoable( ( state, action ) => state );
     const present = { foo: 'bar' };
-    const state = { ...reducer(), present };
+    const action = { type: 'BAZ' };
+    const state = { ...reducer( undefined, action ), present };
 
-    const result = reducer( state, { type: 'BAZ' } );
+    const result = reducer( state, action );
 
     expect( result.present ).to.eq( present );
+  } );
+
+  it( 'should update the past state on SAVE_STATE', () => {
+    const reducer = undoable( ( state, action ) => state );
+    const present = { foo: 'bar' };
+    const state = { ...reducer( undefined, {} ), present };
+    const action = { type: 'SAVE_STATE' };
+
+    const result = reducer( state, action );
+
+    expect( result ).to.eql( { past: [ present ], present, future: [] } );
   } );
 } );
