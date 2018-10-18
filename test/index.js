@@ -33,6 +33,21 @@ describe( 'undoable', () => {
     expect( result ).to.eq( state );
   } );
 
+  it( 'should update the present state if an action type is matched', () => {
+    const reducer = undoable( ( state, action ) => {
+      switch ( action.type ) {
+        case 'INCREMENT': return state + 1;
+        default: return state;
+      }
+    } );
+    const state = { past: [ 1 ], present: 2, future: []  };
+    const action = { type: 'INCREMENT' };
+
+    const result = reducer( state, action );
+
+    expect( result ).to.eql( { past: [ 1 ], present: 3, future: [] } );
+  } );
+
   it( 'should update the past state on SAVE_STATE', () => {
     const reducer = undoable( ( state, action ) => state );
     const present = { foo: 'bar' };
@@ -44,7 +59,7 @@ describe( 'undoable', () => {
     expect( result ).to.eql( { past: [ present ], present, future: [] } );
   } );
 
-  it( 'should update present state on UNDO_STATE', () => {
+  it( 'should update the present state on UNDO_STATE', () => {
     const reducer = undoable( ( state, action ) => state );
     const past = { foo: 'bar' };
     const present = { baz: 'quux' };
