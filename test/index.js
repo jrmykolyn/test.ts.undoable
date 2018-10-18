@@ -8,4 +8,8 @@ describe( 'undoable', () => {
   it( 'should be a function', () => {
     expect( undoable ).to.be.a( 'function' );
   } );
+
+  it( 'should return a function', () => {
+    expect( undoable() ).to.be.a( 'function' );
+  } );
 } );

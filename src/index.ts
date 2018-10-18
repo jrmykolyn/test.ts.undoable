@@ -1,3 +1,5 @@
-const undoable = () => {};
+const undoable = () => {
+  return () => null;
+};
 
 module.exports = undoable;
