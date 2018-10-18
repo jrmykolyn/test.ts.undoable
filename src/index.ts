@@ -14,7 +14,11 @@ const undoable = ( reducer ) => {
         newState = { ...newState, past: [], present: newState.past[ 0 ] };
     }
 
-    return { ...newState, present: reducer( newState.present ) };
+    const newPresent = reducer( newState.present, action );
+
+    return newPresent === newState.present
+      ? newState
+      : { ...newState, present: newPresent };
   };
 };
 

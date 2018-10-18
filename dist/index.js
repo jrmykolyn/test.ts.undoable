@@ -22,7 +22,10 @@ var undoable = function (reducer) {
             case 'UNDO_STATE':
                 newState = __assign({}, newState, { past: [], present: newState.past[0] });
         }
-        return __assign({}, newState, { present: reducer(newState.present) });
+        var newPresent = reducer(newState.present, action);
+        return newPresent === newState.present
+            ? newState
+            : __assign({}, newState, { present: newPresent });
     };
 };
 module.exports = undoable;

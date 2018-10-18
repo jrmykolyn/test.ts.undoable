@@ -30,7 +30,7 @@ describe( 'undoable', () => {
 
     const result = reducer( state, action );
 
-    expect( result.present ).to.eq( present );
+    expect( result ).to.eq( state );
   } );
 
   it( 'should update the past state on SAVE_STATE', () => {
