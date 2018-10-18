@@ -43,4 +43,17 @@ describe( 'undoable', () => {
 
     expect( result ).to.eql( { past: [ present ], present, future: [] } );
   } );
+
+  it( 'should update present state on UNDO_STATE', () => {
+    const reducer = undoable( ( state, action ) => state );
+    const past = { foo: 'bar' };
+    const present = { baz: 'quux' };
+    const state = { past: [ past ], present, future: [] };
+    const action = { type: 'UNDO_STATE' };
+
+    const result = reducer( state, action );
+
+    expect( result.past ).to.eql( [] );
+    expect( result.present ).to.eq( past );
+  } );
 } );

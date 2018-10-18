@@ -9,6 +9,9 @@ const undoable = ( reducer ) => {
     switch ( action.type ) {
       case 'SAVE_STATE':
         newState = { ...newState, past: [ newState.present ] };
+        break;
+      case 'UNDO_STATE':
+        newState = { ...newState, past: [], present: newState.past[ 0 ] };
     }
 
     return { ...newState, present: reducer( newState.present ) };

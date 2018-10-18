@@ -18,6 +18,9 @@ var undoable = function (reducer) {
         switch (action.type) {
             case 'SAVE_STATE':
                 newState = __assign({}, newState, { past: [newState.present] });
+                break;
+            case 'UNDO_STATE':
+                newState = __assign({}, newState, { past: [], present: newState.past[0] });
         }
         return __assign({}, newState, { present: reducer(newState.present) });
     };
