@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
 };
 var undoable = function (reducer) {
     return function (state, action) {
-        var newState;
+        var newState = state;
         if (state === undefined) {
             newState = { past: [], present: state, future: [] };
         }

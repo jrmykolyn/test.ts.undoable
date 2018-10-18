@@ -14,7 +14,17 @@ describe( 'undoable', () => {
   } );
 
   it( 'should define the initial state when the reducer is invoked for the first time', () => {
-    const reducer = undoable(( state, action ) => state );
-    expect(reducer()).to.eql({ past: [], present: undefined, future: [] });
+    const reducer = undoable( ( state, action ) => state );
+    expect( reducer() ).to.eql( { past: [], present: undefined, future: [] } );
+  } );
+
+  it( 'should not update the state if no action types are matched', () => {
+    const reducer = undoable( ( state, action ) => state );
+    const present = { foo: 'bar' };
+    const state = { ...reducer(), present };
+
+    const result = reducer( state, { type: 'BAZ' } );
+
+    expect( result.present ).to.eq( present );
   } );
 } );

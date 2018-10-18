@@ -1,6 +1,6 @@
 const undoable = ( reducer ) => {
   return ( state, action ) => {
-    let newState
+    let newState = state;
 
     if ( state === undefined ) {
       newState = { past: [], present: state, future: [] };
