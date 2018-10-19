@@ -4,8 +4,8 @@
   "description": "## Success Criteria [ ] Module must expose a default export. [ ] Default export must be a higher-order function. [ ] Default function must have a call signature of (reducer: Function). [ ] Default function must return a function which conforms to Redux's `Reducer` interface. [ ] Implementation must be written in TypeScript. [ ] Implementation must be thoroughly tested.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc ./src/index.ts --outDir ./dist",
-    "build:watch": "tsc ./src/index.ts --outDir ./dist --watch",
+    "build": "tsc ./src/index.ts -d --outDir ./dist",
+    "build:watch": "tsc ./src/index.ts -d --outDir ./dist --watch",
     "test": "mocha ./test"
   },
   "author": "",
