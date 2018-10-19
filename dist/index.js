@@ -30,4 +30,4 @@ var undoable = function (reducer) {
             : __assign({}, newState, { present: newPresent });
     };
 };
-module.exports = undoable;
+exports["default"] = undoable;

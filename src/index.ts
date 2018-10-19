@@ -34,4 +34,4 @@ const undoable = ( reducer: Reducer ) => {
   };
 };
 
-module.exports = undoable;
+export default undoable;

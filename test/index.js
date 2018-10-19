@@ -1,7 +1,7 @@
 // IMPORT MODULES
 const { expect } = require( 'chai' );
 const { it } = require( 'mocha' );
-const undoable = require( '../dist' );
+const { default: undoable } = require( '../dist' );
 
 // DEFINE TESTS
 describe( 'undoable', () => {
