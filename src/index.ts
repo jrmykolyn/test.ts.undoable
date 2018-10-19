@@ -1,10 +1,10 @@
-import { Reducer } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 
-interface Action {
+export interface Action extends AnyAction {
   type: string;
 }
 
-interface HistoryState<T> {
+export interface HistoryState<T> {
   past: Array<T>;
   present: T;
   future: Array<T>;
