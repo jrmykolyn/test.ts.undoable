@@ -1,3 +1,4 @@
+"use strict";
 /* tslint:disable:no-console */
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -7,7 +8,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var undoable = require('./')["default"];
+exports.__esModule = true;
+var _1 = require("./");
 var fn = function (state, action) {
     if (state === void 0) { state = { isActive: false }; }
     switch (action.type) {
@@ -17,7 +19,7 @@ var fn = function (state, action) {
         default: return state;
     }
 };
-var reducer = undoable(fn);
+var reducer = _1["default"](fn);
 var initialState = reducer(undefined, { type: 'INIT' });
 var newState = reducer(initialState, { type: 'SET_ACTIVE' });
 console.log('LOGGING OUT `initialState`', initialState);

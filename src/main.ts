@@ -1,6 +1,6 @@
 /* tslint:disable:no-console */
 
-const { default: undoable } = require( './' );
+import undoable from './';
 
 const fn = ( state = { isActive: false }, action ) => {
     switch ( action.type ) {
