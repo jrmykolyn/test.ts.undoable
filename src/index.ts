@@ -1,5 +1,17 @@
-const undoable = ( reducer ) => {
-  return ( state, action ) => {
+import { Reducer } from 'redux';
+
+interface Action {
+  type: string;
+}
+
+interface HistoryState<T> {
+  past: Array<T>;
+  present: T;
+  future: Array<T>;
+}
+
+const undoable = ( reducer: Reducer ) => {
+  return ( state: HistoryState<any>, action: Action ) => {
     let newState = state;
 
     if ( state === undefined ) {
